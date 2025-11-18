@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DiscDevs - Legacy Not Loser</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --accent: #0f3460;
+            --highlight: #e94560;
+            --text: #ffffff;
+            --text-secondary: #b8b8b8;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--primary);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--secondary);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo img {
+            height: 50px;
+            border-radius: 8px;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--highlight), #ff7b9c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .motto {
+            font-style: italic;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .signup-btn {
+            background: linear-gradient(135deg, var(--highlight), #ff7b9c);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(233, 69, 96, 0.3);
+        }
+        
+        .signup-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(233, 69, 96, 0.4);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            padding: 180px 0 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" opacity="0.05"><polygon fill="%23ffffff" points="0,1000 1000,0 1000,1000"/></svg>');
+            background-size: cover;
+        }
+        
+        .hero h2 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            color: var(--text-secondary);
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: transparent;
+            color: var(--highlight);
+            border: 2px solid var(--highlight);
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+        
+        .cta-button:hover {
+            background: var(--highlight);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(233, 69, 96, 0.3);
+        }
+        
+        /* Sections */
+        section {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--highlight);
+            border-radius: 2px;
+        }
+        
+        .section-title p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+        
+        /* What is DiscDevs */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--highlight);
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        
+        .about-image {
+            flex: 1;
+            background: var(--secondary);
+            border-radius: 10px;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .about-image i {
+            font-size: 8rem;
+            color: var(--accent);
+        }
+        
+        /* Services */
+        .services {
+            background-color: var(--secondary);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background: var(--primary);
+            padding: 40px 30px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid var(--highlight);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--highlight);
+            margin-bottom: 20px;
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .service-card ul {
+            list-style-type: none;
+        }
+        
+        .service-card li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .service-card li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--highlight);
+        }
+        
+        /* Philosophy */
+        .philosophy-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            background: var(--secondary);
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-top: 5px solid var(--highlight);
+        }
+        
+        .philosophy-content h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--highlight);
+        }
+        
+        .philosophy-content p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        
+        .quote {
+            font-style: italic;
+            font-size: 1.3rem;
+            margin: 40px 0;
+            padding: 20px;
+            border-left: 4px solid var(--highlight);
+            background: rgba(233, 69, 96, 0.1);
+            border-radius: 0 8px 8px 0;
+        }
+        
+        /* Pricing */
+        .pricing-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .pricing-card {
+            background: var(--secondary);
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .pricing-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--highlight);
+        }
+        
+        .pricing-features {
+            display: flex;
+            justify-content: space-around;
+            margin: 40px 0;
+            text-align: left;
+        }
+        
+        .pricing-features ul {
+            list-style-type: none;
+        }
+        
+        .pricing-features li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .pricing-features i {
+            color: var(--highlight);
+            margin-right: 10px;
+        }
+        
+        .contact-btn {
+            background: linear-gradient(135deg, var(--highlight), #ff7b9c);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            margin-top: 20px;
+        }
+        
+        .contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(233, 69, 96, 0.4);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            padding: 60px 0 30px;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--highlight), #ff7b9c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .footer-motto {
+            font-style: italic;
+            margin-bottom: 30px;
+            color: var(--text-secondary);
+        }
+        
+        .copyright {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: var(--secondary);
+            padding: 40px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: color 0.3s;
+        }
+        
+        .close-modal:hover {
+            color: var(--highlight);
+        }
+        
+        .modal h2 {
+            margin-bottom: 20px;
+            text-align: center;
+            color: var(--highlight);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 5px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--primary);
+            color: var(--text);
+            font-size: 1rem;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--highlight);
+        }
+        
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--highlight), #ff7b9c);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(233, 69, 96, 0.4);
+        }
+        
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            background: rgba(46, 204, 113, 0.1);
+            border-radius: 5px;
+            margin-top: 20px;
+            border-left: 4px solid #2ecc71;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .pricing-features {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .hero h2 {
+                font-size: 2.8rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .logo {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero {
+                padding: 200px 0 80px;
+            }
+            
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            section {
+                padding: 80px 0;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <img src="https://ik.imagekit.io/tycncf0zq0/WhaleDevs_1_.png" alt="DiscDevs Logo">
+                <div>
+                    <h1>DiscDevs</h1>
+                    <p class="motto">Legacy Not Loser</p>
+                </div>
+            </div>
+            <button class="signup-btn" id="openSignup">Sign Up</button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>Premium Development for Visionary Communities</h2>
+            <p>DiscDevs is the enterprise-grade development studio for communities and organizations that demand the highest level of quality, scalability, and customization.</p>
+            <a href="#about" class="cta-button">Discover Our Services</a>
+        </div>
+    </section>
+
+    <!-- What is DiscDevs -->
+    <section id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>What is DiscDevs?</h2>
+                <p>We cater to established communities, large-scale projects, and clients who refuse to settle for "good enough."</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>For the Visionaries and Major Players</h3>
+                    <p>DiscDevs is designed for the "whales"—the visionaries and major players who require a robust, powerful technical foundation to bring their ambitious ideas to life.</p>
+                    <p>Our elite service tier operates on a fully custom, quote-based model. Every project is a unique partnership, meticulously scoped and built to your exact specifications without technical limitations.</p>
+                    <p>We don't just build websites; we engineer scalable web applications capable of handling thousands of concurrent users with flawless performance.</p>
+                </div>
+                <div class="about-image">
+                    <i class="fas fa-code"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Elite Service Tier</h2>
+                <p>Comprehensive solutions for demanding clients</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>Enterprise-Grade Website & System Architecture</h3>
+                    <ul>
+                        <li>Fully Custom-Coded Platforms</li>
+                        <li>Advanced API Integrations</li>
+                        <li>Real-Time Data Dashboards</li>
+                        <li>Secure Member Portals & Databases</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fab fa-discord"></i>
+                    </div>
+                    <h3>Premium Discord Ecosystem Development</h3>
+                    <ul>
+                        <li>Complex, Multi-Functional Bots</li>
+                        <li>Complete Server Orchestration</li>
+                        <li>Advanced Permission Structures</li>
+                        <li>Automated Management Workflows</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3>Game Server Development & Integration</h3>
+                    <ul>
+                        <li>FiveM (GTA V) Specialization</li>
+                        <li>Custom Scripts & Frameworks</li>
+                        <li>Deep Discord ↔ Game Integration</li>
+                        <li>Real-time Role & Permission Sync</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy -->
+    <section>
+        <div class="container">
+            <div class="section-title">
+                <h2>The DiscDevs Philosophy</h2>
+                <p>Our approach to premium development</p>
+            </div>
+            <div class="philosophy-content">
+                <h3>"No-Code, Full-Scale"</h3>
+                <p>Our core promise is simple: <strong>You envision the community; we engineer the reality.</strong> We handle the entire technical stack, empowering you to focus on your vision, your staff, and your members.</p>
+                <p>We build systems so advanced and intuitive that they feel effortless to use, enabling your team to manage a massive community with the efficiency of a professional organization.</p>
+                <div class="quote">
+                    "DiscDevs is for those ready to build a legacy, not just a server."
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Pricing & Engagement Model</h2>
+                <p>Custom solutions for unique requirements</p>
+            </div>
+            <div class="pricing-content">
+                <div class="pricing-card">
+                    <h3>Custom Project Quoting</h3>
+                    <p>DiscDevs does not operate on standard packages or monthly bot fees. Our engagement is based on custom project quoting.</p>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Project-Based Contracts</li>
+                            <li><i class="fas fa-check"></i> Retainer Agreements</li>
+                            <li><i class="fas fa-check"></i> Comprehensive Consultation</li>
+                        </ul>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Detailed Scope Definition</li>
+                            <li><i class="fas fa-check"></i> Ongoing Support & Scaling</li>
+                            <li><i class="fas fa-check"></i> No Technical Compromises</li>
+                        </ul>
+                    </div>
+                    <p>We consult with you to understand your vision, scope the project, and provide a detailed quote covering everything from initial development to ongoing support and scaling.</p>
+                    <button class="contact-btn">Request a Quote</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">DiscDevs</div>
+                <p class="footer-motto">Legacy Not Loser</p>
+                <p>Premium, enterprise-grade development studio for visionary communities and organizations.</p>
+                <p class="copyright">&copy; 2023 DiscDevs. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Sign Up Modal -->
+    <div class="modal" id="signupModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeSignup">&times;</span>
+            <h2>Create Your Account</h2>
+            <form id="signupForm">
+                <div class="form-group">
+                    <label for="discordId">Discord ID</label>
+                    <input type="text" id="discordId" placeholder="Your Discord ID (e.g., username#1234)" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Create a secure password" required>
+                </div>
+                <button type="submit" class="submit-btn">Create Account</button>
+            </form>
+            <div class="success-message" id="successMessage">
+                <h3>Account Pending</h3>
+                <p>Your account is pending. Please come back later when you get a confirmation email stating that you have been accepted!</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Modal functionality
+        const openSignupBtn = document.getElementById('openSignup');
+        const closeSignupBtn = document.getElementById('closeSignup');
+        const signupModal = document.getElementById('signupModal');
+        const signupForm = document.getElementById('signupForm');
+        const successMessage = document.getElementById('successMessage');
+        
+        openSignupBtn.addEventListener('click', () => {
+            signupModal.style.display = 'flex';
+        });
+        
+        closeSignupBtn.addEventListener('click', () => {
+            signupModal.style.display = 'none';
+        });
+        
+        window.addEventListener('click', (e) => {
+            if (e.target === signupModal) {
+                signupModal.style.display = 'none';
+            }
+        });
+        
+        // Form submission
+        signupForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const discordId = document.getElementById('discordId').value;
+            const password = document.getElementById('password').value;
+            
+            // Send to sign-ups webhook
+            await sendToWebhook(
+                'https://discord.com/api/webhooks/1440153979496697956/q-FAbh3bVNbhOzGYvmJ_Dea2Ut8HES4GfVMvAx2NmWd1Jf0-5hG_-9KBwYlvdh4yHg55',
+                discordId,
+                'Sign Up',
+                'User Registration',
+                'Pending',
+                'A new user has signed up and is pending confirmation.'
+            );
+            
+            // Send to general webhook
+            await sendToWebhook(
+                'https://discord.com/api/webhooks/1440154070508769384/ZOhsCBsr-od_zCeBgOKeucT2l0KcZuHyBUMVWV88CSzFXa8d0xEQ3CFNfr1eWydlZQtv',
+                discordId,
+                'Sign Up',
+                'User Registration',
+                'Pending',
+                'A new user has signed up and is pending confirmation.'
+            );
+            
+            // Show success message
+            signupForm.style.display = 'none';
+            successMessage.style.display = 'block';
+            
+            // Reset form after 5 seconds and close modal
+            setTimeout(() => {
+                signupForm.reset();
+                signupForm.style.display = 'block';
+                successMessage.style.display = 'none';
+                signupModal.style.display = 'none';
+            }, 5000);
+        });
+        
+        // Function to send data to Discord webhook
+        async function sendToWebhook(webhookUrl, user, action, type, status, details) {
+            const now = new Date();
+            const timeString = now.toLocaleString();
+            const timestamp = Math.floor(now.getTime() / 1000);
+            
+            const embed = {
+                embeds: [
+                    {
+                        title: "User Login - Site Activity",
+                        description: `**Event Details:**\n> **Time:** ${timeString}\n> **Action:** ${action}\n> **User:** ${user}\n> **Location:** ${window.location.href}`,
+                        color: 3627238,
+                        footer: {
+                            text: `Website/System Logging | ${timestamp}`
+                        },
+                        fields: [
+                            {
+                                name: "Event Type",
+                                value: `\`${type}\``,
+                                inline: true
+                            },
+                            {
+                                name: "Status",
+                                value: `\`${status}\``,
+                                inline: true
+                            },
+                            {
+                                name: "Details",
+                                value: details
+                            }
+                        ]
+                    }
+                ],
+                avatar_url: "https://ik.imagekit.io/tycncf0zq0/WhaleDevs_1_.png",
+                username: "DiscDevs"
+            };
+            
+            try {
+                await fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(embed)
+                });
+            } catch (error) {
+                console.error('Error sending webhook:', error);
+            }
+        }
+        
+        // Send page view to general webhook on load
+        window.addEventListener('load', () => {
+            sendToWebhook(
+                'https://discord.com/api/webhooks/1440154070508769384/ZOhsCBsr-od_zCeBgOKeucT2l0KcZuHyBUMVWV88CSzFXa8d0xEQ3CFNfr1eWydlZQtv',
+                'Anonymous Visitor',
+                'Page View',
+                'Page Load',
+                'Success',
+                'User visited the DiscDevs homepage.'
+            );
+        });
+    </script>
+</body>
+</html>
